@@ -138,8 +138,32 @@ export class DefaultEventHandlers extends CoreEventHandlers {
             };
             this.dropElement(onDropElement);
           }),
+          this.defineNodeEventListener(
+            'touchstart',
+            (e: CraftDOMEvent<DragEvent>, id: NodeId) => {
+              e.craft.stopPropagation();
+              this.store.actions.setNodeEvent('dragged', id);
+
+              DefaultEventHandlers.draggedElementShadow = createShadow(e);
+              DefaultEventHandlers.draggedElement = id;
+            }
+          ),
+          defineEventListener('touchend', (e: CraftDOMEvent<DragEvent>) => {
+            e.craft.stopPropagation();
+            const onDropElement = (draggedElement, placement) => {
+              const index =
+                placement.index + (placement.where === 'after' ? 1 : 0);
+              this.store.actions.move(
+                draggedElement,
+                placement.parent.id,
+                index
+              );
+            };
+            this.dropElement(onDropElement);
+          }),
         ],
       },
+      
       create: {
         init: (el) => {
           el.setAttribute('draggable', 'true');
