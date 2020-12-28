@@ -1,5 +1,6 @@
 {
   "npmClient": "yarn",
+  "name": "craft-js",
   "private": true,
   "author": "Prev Wong <prevwong@gmail.com>",
   "scripts": {
