@@ -1,8 +1,8 @@
 {
   "npmClient": "yarn",
-  "name": "craft-js",
+  "name": "@craftjs/core",
+  "version": "0.1.0-beta.13",
   "private": true,
-  "version": "0.1.0",
   "author": "Prev Wong <prevwong@gmail.com>",
   "scripts": {
     "dev": "./scripts/dev.sh",
